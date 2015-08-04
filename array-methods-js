@@ -62,6 +62,8 @@ var new1 = [1,2,3,4,5];
 var new2 = [6,7,8,9,10];
 var new3 = [['f'], 'g'];
 var new4 = {thing: "awesome"}; 
+var new5 = [1,2,"3",4,5];
+var new6 = [1,2,[3,4],5];
 
 // console.log(conCat(new1, new2)); // ✅
 // console.log(conCat(new1, new3)); // ✅
@@ -82,6 +84,31 @@ function includedInArray(arrayToInspect, token){
 // console.log(includedInArray(new1, 3)) // expect true
 // console.log(includedInArray(new1, 7)) // expect false
 // console.log(includedInArray(new2, 7)) // expect true
+// console.log(includedInArray(new2, 8)); // expect true
+// console.log(includedInArray(new2, "8")); // expect false
+// console.log(includedInArray(new6, [3,4])); // expect true  //got false.  Doesn't do nested arrays.
+
+// Here's a solution that does nested arrays as well:
+var include2 = function(arr, element){
+    var output = false;
+    if (Array.isArray(element) === true){
+        for (var i = 0; i < arr.length; i++){
+            if (arr[i][0] === element[0]){
+              for (var j = 1; (arr[i][j] === element[j]) && (j < element.length); j++){
+                output = true;
+              };
+            };
+        };
+    }
+    else {
+        for (var i = 0; i < arr.length; i++){
+          if (arr[i] === element){
+            output = true;
+          };
+        };
+    };
+    return output;
+};
 
 
 //Roll your own Array.prototype.toString function
