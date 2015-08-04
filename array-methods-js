@@ -53,22 +53,37 @@ var new4 = {thing: "awesome"};
 
 // Roll your own Array#include? method (from Ruby) to Javascript
 function includedInArray(arrayToInspect, token){
-  output = 0;
+  counter = 0;
   for (var i = 0; i < arrayToInspect.length; i++) {
     if (arrayToInspect[i] === token){
-      output++
+      counter++
     }
   }
-  return (output > 0) ? true : false;
+  return (counter > 0) ? true : false;
 } 
 
-console.log(includedInArray(new1, 3)) // expect true
-console.log(includedInArray(new1, 7)) // expect false
-console.log(includedInArray(new2, 7)) // expect true
+// console.log(includedInArray(new1, 3)) // expect true
+// console.log(includedInArray(new1, 7)) // expect false
+// console.log(includedInArray(new2, 7)) // expect true
 
 
+//Roll your own Array.prototype.toString function
+function toString(array, token){
+  var output="";
+  if (token === undefined){
+    token = ",";
+  }
+  for (var i = 0; i < array.length; i++) {
+    output += array[i] + "" + token;
+  }
+  return output.substring(0, output.length -1);
+}
 
+var example1 = ['This', 'Is', 'An', 'Array', 'Of', 'Strings'];
+var example2 = [1,2,3,4,5];
 
+console.log(toString(example1)); // expect "This,Is,An,Array,Of,Strings"
+console.log(toString(example2)); // expect "1,2,3,4,5"
 
 
 
