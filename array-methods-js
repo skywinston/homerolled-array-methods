@@ -1,0 +1,77 @@
+// Roll your own Array.prototype.slice() method
+function slicey(array, firstIndex, lastIndex){
+  var output = [];
+
+  if ( lastIndex === undefined || lastIndex > array.length - 1 ) {
+    lastIndex = array.length;
+  }
+  else if ( lastIndex < 0 ){
+    lastIndex = array.length - lastIndex; // haven't test this yet, but I looks good. 
+  }
+  else if ( firstIndex === undefined ){
+    firstIndex = 0;
+  }
+  else if ( firstIndex < 0 ){
+    firstIndex = array.length + firstIndex;
+  }
+
+  for (var i = firstIndex; i < lastIndex; i++){
+    output.push(array[i]);
+  }
+  return output;
+}
+
+var testArray = [1,2,3,4,5];
+
+// console.log(testArray.slice(1,3));
+// console.log(slicey(testArray, 1,3)); // expect the same output as the line above
+
+
+// Roll your own Array.prototype.concat() method
+function conCat(original, toAdd){
+  var output = [];
+  for (var i = 0; i < original.length; i++){
+    output.push(original[i]);
+  }
+  for (var j = 0; j < toAdd.length; j++) {
+    output.push(toAdd[j])
+  }
+  if ( toAdd.length === undefined ){
+    output.push(toAdd);
+  }
+  return output;
+}
+
+var new1 = [1,2,3,4,5];
+var new2 = [6,7,8,9,10];
+var new3 = [['f'], 'g'];
+var new4 = {thing: "awesome"}; 
+
+// console.log(conCat(new1, new2));
+// console.log(conCat(new1, new3));
+// console.log(conCat(new1, new4));
+
+// Roll your own Array#include? method (from Ruby) to Javascript
+function includedInArray(arrayToInspect, token){
+  output = 0;
+  for (var i = 0; i < arrayToInspect.length; i++) {
+    if (arrayToInspect[i] === token){
+      output++
+    }
+  }
+  return (output > 0) ? true : false;
+} 
+
+console.log(includedInArray(new1, 3)) // expect true
+console.log(includedInArray(new1, 7)) // expect false
+console.log(includedInArray(new2, 7)) // expect true
+
+
+
+
+
+
+
+
+
+
