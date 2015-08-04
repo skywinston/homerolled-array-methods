@@ -42,21 +42,38 @@ function conCat(original, toAdd){
   return output;
 }
 
+//Here's another approach for toString that accepts any amount of arguments:
+function concat2(array){
+  var output = [];
+  for(var x=0;x<arguments.length;x++){
+    if (Array.isArray(arguments[x])) {
+      for (var i=0;i<arguments[x].length;i++){
+        output.push(arguments[x][i]);
+      }
+    } else {
+      output.push(arguments[x]);
+    }
+  }
+  return output;
+}
+
+// test cases
 var new1 = [1,2,3,4,5];
 var new2 = [6,7,8,9,10];
 var new3 = [['f'], 'g'];
 var new4 = {thing: "awesome"}; 
 
-// console.log(conCat(new1, new2));
-// console.log(conCat(new1, new3));
-// console.log(conCat(new1, new4));
+// console.log(conCat(new1, new2)); // ✅
+// console.log(conCat(new1, new3)); // ✅
+// console.log(conCat(new1, new4)); // ✅
+// console.log(concat2(new1, new4)); // ✅
 
 // Roll your own Array#include? method (from Ruby) to Javascript
 function includedInArray(arrayToInspect, token){
   counter = 0;
   for (var i = 0; i < arrayToInspect.length; i++) {
     if (arrayToInspect[i] === token){
-      counter++
+      counter++;
     }
   }
   return (counter > 0) ? true : false;
@@ -82,8 +99,8 @@ function toString(array, token){
 var example1 = ['This', 'Is', 'An', 'Array', 'Of', 'Strings'];
 var example2 = [1,2,3,4,5];
 
-console.log(toString(example1)); // expect "This,Is,An,Array,Of,Strings"
-console.log(toString(example2)); // expect "1,2,3,4,5"
+// console.log(toString(example1)); // expect "This,Is,An,Array,Of,Strings"
+// console.log(toString(example2)); // expect "1,2,3,4,5"
 
 
 
